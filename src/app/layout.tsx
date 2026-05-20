@@ -63,7 +63,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sora.variable} ${dmSans.variable} scroll-smooth`}>
       <head>
-        <link rel="preload" as="image" href="/images/hero-bg.webp" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero-bg-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero-bg.webp" media="(min-width: 768px)" fetchPriority="high" />
         <script dangerouslySetInnerHTML={{ __html: `
   (function() {
     if (sessionStorage.getItem('sf-done')) return;

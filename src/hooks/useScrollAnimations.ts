@@ -8,6 +8,8 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 
 export function useScrollAnimations() {
   useEffect(() => {
+    let rafId: number
+
     const ctx = gsap.context(() => {
 
       // --- SPLIT TEXT on all section headlines ---
@@ -49,16 +51,18 @@ export function useScrollAnimations() {
         scrollTrigger: { trigger: '.about-section', start: 'top 78%' }
       })
 
-      // --- WHY US cards ---
-      gsap.from('.why-card', {
-        y: 50, opacity: 0, duration: 0.7, stagger: 0.14, ease: 'power2.out',
-        scrollTrigger: { trigger: '.why-section', start: 'top 80%' }
+      // --- WHY US cards — batched to avoid per-element reflow reads ---
+      ScrollTrigger.batch('.why-card', {
+        start: 'top 80%',
+        onEnter: (els) =>
+          gsap.from(els, { y: 50, opacity: 0, duration: 0.7, stagger: 0.14, ease: 'power2.out' }),
       })
 
-      // --- TESTIMONIAL cards ---
-      gsap.from('.testimonial-card', {
-        y: 40, opacity: 0, duration: 0.7, stagger: 0.15, ease: 'power2.out',
-        scrollTrigger: { trigger: '.testimonials-section', start: 'top 82%' }
+      // --- TESTIMONIAL cards — batched ---
+      ScrollTrigger.batch('.testimonial-card', {
+        start: 'top 82%',
+        onEnter: (els) =>
+          gsap.from(els, { y: 40, opacity: 0, duration: 0.7, stagger: 0.15, ease: 'power2.out' }),
       })
 
       // --- CONTACT columns ---
@@ -73,6 +77,13 @@ export function useScrollAnimations() {
 
     })
 
-    return () => ctx.revert()
+    // Single ScrollTrigger.refresh after first paint so all trigger positions
+    // are calculated with final layout (fonts loaded, images sized).
+    rafId = requestAnimationFrame(() => ScrollTrigger.refresh())
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      ctx.revert()
+    }
   }, [])
 }

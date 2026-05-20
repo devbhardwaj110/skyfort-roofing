@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import Image from 'next/image'
 
 interface Review {
   stars: number
@@ -21,7 +22,7 @@ const reviews: Review[] = [
     location: 'Dallas, TX',
     project: 'Roof Repair after hail storm',
     initials: 'BH',
-    image: '/images/reviewer-brian.webp',
+    image: '/images/reviewer-brian-80.webp',
   },
   {
     stars: 5,
@@ -31,7 +32,7 @@ const reviews: Review[] = [
     location: 'Frisco, TX',
     project: 'Full Roof Replacement + Insurance Claim',
     initials: 'JM',
-    image: '/images/reviewer-jennifer.webp',
+    image: '/images/reviewer-jennifer-80.webp',
   },
   {
     stars: 5,
@@ -41,7 +42,7 @@ const reviews: Review[] = [
     location: 'Plano, TX',
     project: 'Roof Replacement — Owens Corning Duration',
     initials: 'DK',
-    image: '/images/reviewer-david.webp',
+    image: '/images/reviewer-david-80.webp',
   },
   {
     stars: 5,
@@ -51,7 +52,7 @@ const reviews: Review[] = [
     location: 'Allen, TX',
     project: 'Emergency Tarping + Replacement',
     initials: 'LR',
-    image: '/images/reviewer-lisa.webp',
+    image: '/images/reviewer-lisa-80.webp',
   },
 ]
 
@@ -66,17 +67,12 @@ function ReviewCard({ review }: { review: Review }) {
       </p>
       <div className="flex items-start gap-3 pt-4 border-t border-white/10">
         {review.image ? (
-          <img
+          <Image
             src={review.image}
             alt={review.name}
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              objectFit: 'cover',
-              objectPosition: 'top',
-              flexShrink: 0,
-            }}
+            width={80}
+            height={80}
+            style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', flexShrink: 0 }}
           />
         ) : (
           <div

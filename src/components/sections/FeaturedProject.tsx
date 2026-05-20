@@ -105,7 +105,7 @@ export default function FeaturedProject() {
           </p>
           <div className="flex items-center gap-3">
             <img
-              src="/images/reviewer-mark.webp"
+              src="/images/reviewer-mark-80.webp"
               alt="Mark T."
               style={{
                 width: '40px',
