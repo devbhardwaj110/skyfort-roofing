@@ -83,7 +83,7 @@ export default function WhyChooseUs() {
 
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-[#8B6914] text-xs font-semibold tracking-widest uppercase mb-3">
+          <p className="text-[#6B5000] text-xs font-semibold tracking-widest uppercase mb-3">
             Why Choose Us
           </p>
           <h2
@@ -147,7 +147,7 @@ export default function WhyChooseUs() {
           ].map(({ value, label }) => (
             <div key={label} className="text-center">
               <span
-                className="text-5xl font-black text-[#8B6914] block"
+                className="text-5xl font-black text-[#6B5000] block"
                 style={{ fontFamily: 'var(--font-sora)' }}
               >
                 {value}

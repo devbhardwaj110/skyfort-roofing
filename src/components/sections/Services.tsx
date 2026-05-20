@@ -9,28 +9,28 @@ const services = [
     title: 'Roof Repair',
     description:
       'Fast, precise repairs for leaks, missing shingles, and flashing failures — stopping damage before it spreads.',
-    image: '/images/service-repair.webp',
+    image: '/images/service-repair-800.webp',
   },
   {
     icon: Home,
     title: 'Roof Replacement',
     description:
       'Full tear-off and installation using premium GAF and Owens Corning materials, backed by manufacturer warranty.',
-    image: '/images/service-replacement.webp',
+    image: '/images/service-replacement-800.webp',
   },
   {
     icon: CloudRain,
     title: 'Storm Damage Restoration',
     description:
       'Rapid assessment and restoration after hail, wind, or severe weather — we document everything for your claim.',
-    image: '/images/service-storm.webp',
+    image: '/images/service-storm-800.webp',
   },
   {
     icon: AlertTriangle,
     title: 'Emergency Roofing',
     description:
       'Round-the-clock emergency response. We tarp, secure, and repair your roof the same day — any hour, any weather.',
-    image: '/images/service-emergency.webp',
+    image: '/images/service-emergency-800.webp',
     badge: '24/7',
   },
   {
@@ -38,7 +38,7 @@ const services = [
     title: 'Insurance Claim Assistance',
     description:
       'We work directly with your insurance adjuster, handle the paperwork, and maximize your claim payout.',
-    image: '/images/service-insurance.webp',
+    image: '/images/service-insurance-800.webp',
   },
 ]
 
@@ -87,8 +87,8 @@ export default function Services() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                     decoding="async"
-                    width={568}
-                    height={379}
+                    width={800}
+                    height={338}
                   />
                 </div>
 

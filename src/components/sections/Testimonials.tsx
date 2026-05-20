@@ -84,9 +84,9 @@ function ReviewCard({ review }: { review: Review }) {
         )}
         <div className="flex-1 min-w-0">
           <p className="text-white font-semibold text-sm">{review.name}</p>
-          <p className="text-slate-500 text-xs">{review.location}</p>
+          <p className="text-white/50 text-xs">{review.location}</p>
         </div>
-        <p className="text-slate-600 text-xs text-right leading-tight hidden sm:block max-w-[120px]">
+        <p className="text-white/50 text-xs text-right leading-tight hidden sm:block max-w-[120px]">
           {review.project}
         </p>
       </div>
@@ -166,18 +166,20 @@ export default function Testimonials() {
               ‹
             </button>
 
-            <div className="flex gap-2">
+            <div className="flex items-center">
               {reviews.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
                   aria-label={`Go to review ${i + 1}`}
-                  className={`rounded-full transition-all duration-200 ${
+                  className="p-2 flex items-center justify-center"
+                >
+                  <span className={`rounded-full transition-all duration-200 block ${
                     i === current
                       ? 'w-5 h-2 bg-[#D4A017]'
                       : 'w-2 h-2 bg-white/20 hover:bg-white/40'
-                  }`}
-                />
+                  }`} />
+                </button>
               ))}
             </div>
 

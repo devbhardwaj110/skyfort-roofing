@@ -31,7 +31,7 @@ export default function Process() {
         <div
           className="text-center mb-16"
         >
-          <p className="text-[#8B6914] text-xs font-semibold tracking-widest uppercase mb-3">
+          <p className="text-[#6B5000] text-xs font-semibold tracking-widest uppercase mb-3">
             How It Works
           </p>
           <h2

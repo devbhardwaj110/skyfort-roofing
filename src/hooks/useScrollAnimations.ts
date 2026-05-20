@@ -8,26 +8,31 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 
 export function useScrollAnimations() {
   useEffect(() => {
+    // On mobile (< 768px) skip SplitText entirely — it forces a layout reflow for
+    // every element, which is the primary source of TBT on slow mobile connections.
+    const isMobile = window.innerWidth < 768
     let rafId: number
 
     const ctx = gsap.context(() => {
 
-      // --- SPLIT TEXT on all section headlines ---
-      document.querySelectorAll('.split-headline').forEach((el) => {
-        const split = new SplitText(el, { type: 'words', mask: 'words' })
-        gsap.from(split.words, {
-          yPercent: 110,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.07,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
+      if (!isMobile) {
+        // --- SPLIT TEXT on all section headlines (desktop/tablet only) ---
+        document.querySelectorAll('.split-headline').forEach((el) => {
+          const split = new SplitText(el, { type: 'words', mask: 'words' })
+          gsap.from(split.words, {
+            yPercent: 110,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.07,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          })
         })
-      })
+      }
 
       // --- ABOUT section images ---
       gsap.from('.about-img-1', {
@@ -77,8 +82,7 @@ export function useScrollAnimations() {
 
     })
 
-    // Single ScrollTrigger.refresh after first paint so all trigger positions
-    // are calculated with final layout (fonts loaded, images sized).
+    // Single refresh after first paint so all trigger offsets use the final layout.
     rafId = requestAnimationFrame(() => ScrollTrigger.refresh())
 
     return () => {
