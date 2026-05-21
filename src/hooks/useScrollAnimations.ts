@@ -71,12 +71,17 @@ export function useScrollAnimations() {
       })
 
       // --- CONTACT columns ---
+      // immediateRender:false prevents GSAP from snapping these to their "from"
+      // positions at page load (contact-right at x:40 would overflow the viewport
+      // and create the white-strip bug on mobile).
       gsap.from('.contact-left', {
         x: -40, opacity: 0, duration: 0.8, ease: 'power3.out',
+        immediateRender: false,
         scrollTrigger: { trigger: '.contact-section', start: 'top 80%' }
       })
       gsap.from('.contact-right', {
         x: 40, opacity: 0, duration: 0.8, ease: 'power3.out',
+        immediateRender: false,
         scrollTrigger: { trigger: '.contact-section', start: 'top 80%' }
       })
 
